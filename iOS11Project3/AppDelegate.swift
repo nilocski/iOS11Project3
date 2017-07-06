@@ -16,6 +16,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        if let split = window?.rootViewController as? UISplitViewController {
+            split.preferredDisplayMode = .allVisible
+            
+            // find the right-hand view controller
+            if let nc = split.viewControllers.last as? UINavigationController {
+                // find the postcard view controller inside the navigation controller
+                nc.topViewController?.navigationItem.leftBarButtonItem = split.displayModeButtonItem
+            }
+        }
+        
+        
         return true
     }
 
